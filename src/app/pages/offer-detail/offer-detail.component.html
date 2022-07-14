@@ -1,0 +1,69 @@
+<div class="offer-detail-content">
+  <div class="container px-0">
+    <div class="banner">
+      <img
+        [srcset]="offerData[0]?.offers[0].banner.imgSrcSet"
+        [src]="offerData[0]?.offers[0].banner.imgSrc"
+        alt
+      />
+    </div>
+  </div>
+  <div class="container">
+    <div class="offer-speciality">
+      <img
+        class="offer-brand"
+        [srcset]="offerData[0]?.offers[0].brand.imgSrcSet"
+        [src]="offerData[0]?.offers[0].brand.imgSrc"
+        alt
+      />
+      <span class="offer-tag">
+        <img class="icon" src="/assets/icons/svg_icons/tag_icon.svg" alt />
+        {{ offerData[0]?.offers[0].discount.text }}
+      </span>
+    </div>
+    <h5 class="title">{{ offerData[0]?.offers[0].title }}</h5>
+    <p class="text">
+      {{ offerData[0]?.offers[0].longText }}
+    </p>
+    <h6 class="sub-title">
+      <img
+        class="icon"
+        srcset="
+          /assets/images/percentage_icon.png,
+          /assets/images/percentage_icon@2x.png 2x,
+          /assets/images/percentage_icon@3x.png 3x
+        "
+        src="/assets/images/percentage_icon@3x.png"
+        alt
+      />
+      <span class="ml-2">Terms and Condition</span>
+    </h6>
+    <p class="text">
+      {{ offerData[0]?.offers[0].terms }}
+    </p>
+    <div class="text-center mt-5">
+      <a
+        type="button"
+        class="btn btn-info"
+        (click)="
+          claimCoupon(offerData[0]?.offers[0].id, offerData[0].categoryId);
+          openModal(offerClaimTemplate)
+        "
+      >
+        Claim Offer
+      </a>
+    </div>
+  </div>
+</div>
+<ng-template #offerClaimTemplate>
+  <div class="modal-body" (click)="modalRef?.hide()">
+    <div class="d-flex flex-nowrap justify-content-center">
+      <img
+        class="mr-3"
+        src="/assets/icons/svg_icons/circle_check_filled.svg"
+        alt
+      />
+      Offer Claimed Successfully
+    </div>
+  </div>
+</ng-template>
